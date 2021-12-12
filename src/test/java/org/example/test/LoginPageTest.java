@@ -2,11 +2,9 @@ package org.example.test;
 
 import org.example.base.BaseTest;
 import org.example.page.LoginPage;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-//Note
+
 public class LoginPageTest extends BaseTest{
     LoginPage loginPage;
 
@@ -17,12 +15,7 @@ public class LoginPageTest extends BaseTest{
 
     @Test
     public void test(){
-        loginPage.clickLogIn().sendEmail().sendPassword().SubmitButton().search().clickButton().scroll();
-    }
-
-    @After
-    public void after(){
-      //  tearDown();
+        loginPage.clickLogIn().sendEmail().sendPassword().SubmitButton().search().clickButton().scroll().cart().goToCartP();
     }
 }
 

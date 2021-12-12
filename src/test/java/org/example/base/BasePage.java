@@ -1,5 +1,6 @@
 package org.example.base;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.Random;
+
+import static org.example.constants.Constants.*;
 
 public class BasePage {
     WebDriver driver = null;
@@ -38,25 +41,29 @@ public class BasePage {
         Actions actions = new Actions(driver);
         actions.moveToElement(findElement(by)).build().perform();
     }
-     public void scrollDown(){
-        // driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-
-         WebElement loadMore = driver.findElement(By.className("lazy-load-button"));
-         Actions actionMore = new Actions(driver);
-         actionMore.moveToElement(loadMore).click().build().perform();
-         List<WebElement> allProducts = driver.findElements(By.className("a_model_item"));
+     public void randItemPıcker(){
+         List<WebElement> allProducts = driver.findElements(ITEMS);
          Random rand = new Random();
          int randomProduct = rand.nextInt(allProducts.size());
          allProducts.get(randomProduct).click();
+
      }
+     public String productPrice;
+     public void getPrice(){
+        productPrice = findElement(PRODUCT_DETAIL_PRICE).getText();
 
-
-
+     }
+     public void priceAssertion(){
+         String b =findElement(CART_PRICE).getText();
+         Assert.assertEquals(productPrice,b);
+     }
+     public void logControl(String ab){
+         String check ="Hesabım";
+         Assert.assertEquals(check,ab);
+     }
 
     public String getText(By by){
         wait.until(webdriver ->ExpectedConditions.presenceOfAllElementsLocatedBy(by));
         return findElement(by).getText();
     }
-
-
 }

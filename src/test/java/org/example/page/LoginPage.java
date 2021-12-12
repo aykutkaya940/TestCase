@@ -3,6 +3,8 @@ package org.example.page;
 import org.example.base.BasePage;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.example.constants.Constants.*;
 
 public class LoginPage extends BasePage {
@@ -31,8 +33,14 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage SubmitButton() {
+    public LoginPage SubmitButton()  {
         click(CLICK_BUTTON_LOGIN);
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+       logControl(findElement(LOG_CONTROL).getText());
         return  this;
     }
 
@@ -47,11 +55,24 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage scroll(){
-        scrollDown();
+        click(LOAD_MORE_BUTTON);
+        randItemPıcker();
+        getPrice();
+        click(CREATE_RANDOM_OPT);
         return this;
     }
 
+    public LoginPage cart(){
+        click(ADD_TO_THE_CART);
+        return this;
+    }
 
-
-
+    public LoginPage goToCartP(){
+        click(GO_TO_THE_CART);
+        priceAssertion();
+        click(ADD_QUANTITY);
+        click(DELETE);
+        click(POP_UP_DEL);
+        return this;
+    }
 }
