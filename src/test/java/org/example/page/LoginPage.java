@@ -24,12 +24,12 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage sendEmail(){
-        sendKeys(EMAIL_AREA,"omega0634@hotmail.com");
+        sendKeys(EMAIL_AREA,"_email_");
         return  this;
     }
 
     public LoginPage sendPassword(){
-        sendKeys(PASSWORD_AREA,"deneme123.");
+        sendKeys(PASSWORD_AREA,"_pass_");
         return this;
     }
 
